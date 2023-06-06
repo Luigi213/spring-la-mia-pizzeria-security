@@ -15,7 +15,7 @@
 	    Authenticated user roles:
 	    <div sec:authentication="principal.authorities"></div>	
 	</div>
-	<a th:href="@{/pizza/create}">Create pizza</a>
+	<a th:href="@{/pizza/create}" sec:authorize="hasAuthority('ADMIN')">Create pizza</a>
 	<form th:action="@{/pizza/by/name}" method="POST">
 		<input type="text" name="name">
 		<input type="submit" value="Search"> 
@@ -28,10 +28,10 @@
 			<a th:href="@{/pizza/{id} (id=*{id})}">
 				[[ *{name} ]]
 			</a>
-			<a th:href="@{/pizza/delete/{id} (id=*{id})}">
+			<a th:href="@{/pizza/delete/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">
 				delete
 			</a>
-			<a th:href="@{/pizza/update/{id} (id=*{id})}">
+			<a th:href="@{/pizza/update/{id} (id=*{id})}" sec:authorize="hasAuthority('ADMIN')">
 				update
 			</a>
 		</li>
